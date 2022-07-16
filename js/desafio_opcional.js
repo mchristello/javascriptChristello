@@ -1,45 +1,39 @@
 // Crear un algoritmo utilizando un ciclo (for, while, do...while)
 
-/* let facturacion = 0
-let totalFacturacion = 0
-
-// Impuesto se calcula en base a alícuota de 4.5%
-let alicuota = 0.045 
-
-let impuestoAPagar = 0
-let cantidadMeses = parseInt(prompt("Cuantos meses desea calcular?"))
-
-for (let i=0; i<cantidadMeses; i++) {
-    facturacion = parseInt(prompt(`Ingrese la nota ${i+1}`))
-    totalFacturacion = totalFacturacion + facturacion
-    console.log("El acumulado es de " + totalFacturacion)
-}
-impuestoAPagar = totalFacturacion * alicuota
-
-console.log("El total facturado es de " + totalFacturacion)
-console.log("El importe de impuesto a pagar es de " + impuestoAPagar.toFixed(2)) */
-
-// Y si lo hacemos con while?
-
 let facturacion = 0
 let totalFacturacion = 0
 let alicuota = 0.045
 let impuestoAPagar = 0
-let iniciar = prompt("Desea calcular su impuesto?")
+let nombre = prompt("Ingresá tu nombre")
+let iniciar = prompt("Desea calcular su impuesto?") //Se le pide al usuario si quiere empezar el proceso de calculo
 
-if(iniciar == "si"){
-    while((iniciar != "no") && (iniciar != "salir")) {
-        let cantidadMeses = parseInt(prompt("Ingrese la cantidad de meses a calcular"))
-        for (let i=0; i<cantidadMeses; i++) {
-            facturacion = parseInt(prompt(`Ingrese la nota ${i+1}`))
-            totalFacturacion = totalFacturacion + facturacion
-            console.log("El acumulado es de " + totalFacturacion)
+    debugger
+    if(iniciar.toLowerCase() == "si"){
+        while((iniciar != "no") && (iniciar != "salir")) {
+            // Se pide que se ingresen la cantidad de meses que quiere calcular
+            let cantidadMeses = parseInt(prompt("Ingrese la cantidad de meses a calcular"))
+            for (let i=0; i<cantidadMeses; i++) {
+                // Se ejecuta el bucle la cantidad de veces como meses desea calcular, pidiendo un importe por cada uno de esos meses
+                facturacion = parseInt(prompt(`Ingrese la nota ${i+1}`))
+                totalFacturacion = totalFacturacion + facturacion
+                // La consola va arrojando el total acumulado en el proceso
+                console.log("El acumulado es de " + totalFacturacion)
+            }
+            // Cuando termina de ingresar lo importes se calcula cuanto será el impuesto
+            impuestoAPagar = totalFacturacion * alicuota
+            // La consola arroja los dos resultados finales, el total facturado y el impuesto a pagar
+            console.log("El total facturado es de " + totalFacturacion)
+            console.log("El importe de impuesto a pagar es de " + impuestoAPagar.toFixed(2))
+            alert(`El importe del impuesto a pagar es de ${impuestoAPagar}`)
+            // Se pregunta si quiere volver a iniciar otro proceso de calculo
+            iniciar = prompt("Desea calcular otro impuesto? En caso no querer, tipear 'salir'")
         }
-        impuestoAPagar = totalFacturacion * alicuota
-        console.log("El total facturado es de " + totalFacturacion)
-        console.log("El importe de impuesto a pagar es de " + impuestoAPagar.toFixed(2))
-        iniciar = prompt("Desea calcular otro impuesto? En caso no querer, tipear 'salir'")
+    }else{
+        console.log("Muchas gracias, te esperamos de vuelta cuando nos necesites!");
+        alert(`Muchas gracias ${nombre}, te esperamos de vuelta cuando nos necesites`)
     }
-}else{
-        console.log("Muchas gracias por tenernos en cuenta para calcular sus impuestos");
-}
+    // Si la respuesta a let = iniciar no es "si", la consola arroja un mensaje final y termina el proceso
+    if(iniciar != "si"){
+        console.log("Muchas gracias, te esperamos de vuelta cuando nos necesites!");
+        alert(`Muchas gracias ${nombre}, te esperamos de vuelta cuando nos necesites`)
+    }

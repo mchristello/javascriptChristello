@@ -129,3 +129,26 @@ switch (colores) {
         console.log("Ingrese un color valido");
         break;
 }
+
+
+// Ejercio propio base del entregable opcional
+
+let facturacion = 0
+let totalFacturacion = 0
+// Impuesto se calcula en base a alícuota de 4.5%
+let alicuota = 0.045
+let impuestoAPagar = 0
+let nombre = prompt("Ingresá tu nombre")
+let cantidadMeses = parseInt(prompt("Cuantos meses desea calcular?"))
+debugger
+    for (let i=1; i<=cantidadMeses; i++) {
+        facturacion = parseInt(prompt(`Ingrese el importe de facturacion ${i}`))
+        totalFacturacion = totalFacturacion + facturacion
+        console.log("El acumulado es de " + totalFacturacion)
+    }
+    impuestoAPagar = totalFacturacion * alicuota
+
+    console.log("El total facturado es de " + totalFacturacion)
+    alert(`${nombre}, el importe total facturado es de ${totalFacturacion}`)
+    console.log("El importe de impuesto a pagar es de " + impuestoAPagar.toFixed(2))
+    alert(`${nombre}, el total de impuesto a pagar es de ${impuestoAPagar}`)
