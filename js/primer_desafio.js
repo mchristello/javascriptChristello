@@ -76,7 +76,6 @@ function despuesRetenciones(total) {
     alert(`El importe del impuesto a pagar, descontando las retenciones, es de $` + total);
 }
 
-debugger
 let facturacion = 0
 let totalFacturacion = 0
 let alicuota = 0.045
