@@ -9,7 +9,7 @@ class Pasajeros {
         this.edad = edad
     }
     mostrarDatos(){
-        console.log(`Pasajero N°${this.id} es ${this.nombre}, y tiene ${this.edad}.`);
+        console.log(`Pasajero N°${this.id} es ${this.nombre}, y tiene ${this.edad} años.`);
     }
 }
 
