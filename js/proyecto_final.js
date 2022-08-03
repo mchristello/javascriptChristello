@@ -33,6 +33,25 @@ const auto10 = new Autos(10, 2017, "Volkswagen", "Amarok 3.0 4x4 V6 Extreme", 89
 
 const parking = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9, auto10];
 
+// DOM sobre entrega proyecto FINAL
+
+let vehiculos = document.getElementById("vehiculos");
+console.log(vehiculos);
+
+// Tarjetas simples sin CSS 
+parking.forEach((auto)=>{
+    let nuevaTarjeta = document.createElement("div");
+    nuevaTarjeta.innerHTML = `<article id="${auto.id}">
+                                <ul class="description">
+                                    <li><strong>Marca: ${auto.marca}</strong></li>
+                                    <li>Modelo: ${auto.modelo}</li>
+                                    <li>Año: ${auto.anio}</li>
+                                    <li><b>Valor: $${auto.valor}</b></li>
+                                </ul>
+                            </article>`;
+    vehiculos.appendChild(nuevaTarjeta);
+})
+
 // Declaración de Funciones
 // Funciones para el menú
 function opcionesMenu() {
@@ -249,3 +268,4 @@ let salir
 
 // un console.log al fina para mostrar el array Completo
 console.log(parking);
+
