@@ -1,4 +1,3 @@
-// Primera Entrega PROYECTO FINAL DE JS
 // COTIZADOR DE SEGURO Y BASE DE DATOS DE AUTOS
 
 
@@ -33,108 +32,44 @@ const auto10 = new Autos(10, 2017, "Volkswagen", "Amarok 3.0 4x4 V6 Extreme", 89
 
 const parking = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9, auto10];
 
-// DOM sobre entrega proyecto FINAL
-
-let vehiculos = document.getElementById("vehiculos");
-console.log(vehiculos);
-
-// Tarjetas simples sin CSS 
-parking.forEach((auto)=>{
-    let nuevaTarjeta = document.createElement("div");
-    nuevaTarjeta.innerHTML = `<article id="${auto.id}">
-                                <ul class="description">
-                                    <li><strong>Marca: ${auto.marca}</strong></li>
-                                    <li>Modelo: ${auto.modelo}</li>
-                                    <li>Año: ${auto.anio}</li>
-                                    <li><b>Valor: $${auto.valor}</b></li>
-                                </ul>
-                            </article>`;
-    vehiculos.appendChild(nuevaTarjeta);
-})
-
 // Declaración de Funciones
-// Funciones para el menú
-function opcionesMenu() {
-    let opciones = parseInt(prompt(`Ingrese la opción que desea:
-                                    1 - Ingresar un vehículo al catalogo.
-                                    2 - Ver el listado de vehículos.
-                                    3 - Cotizar seguro para un vehículo.
-                                    4 - Para buscar vehículo por MARCA.
-                                    5 - Para Salir del menú.`));
-    menu(opciones);
-}
-
-function menu(elegirMenu) {
-    switch (elegirMenu) {
-        case 1:
-            agregandoVehiculo(); // Ingresar vehículo nuevo
-            break;
-        case 2:
-            mostrarCatalogo() // Catalogo de vehículos
-            break;
-        case 3:
-            paraCotizar() // Cotizar vehículo
-            break;
-        case 4:
-            result = confirm(`Desea hacer busqueda de vehículo por MARCA?`);
-            if (result == true){
-                busquedaPregunta(); // Buscar vehículo
-            }else{
-                opcionesMenu();
-            }            
-            break;
-        case 5:
-            salir = true;
-            alert(`Gracias por usar nuestros servicios, vuelva pronto!!`);
-            break;
-        default:
-            alert(`Ingrese una opción correcta`)
-    }
-}
-
 // Funciones empleadas para agregar vehículo a la base de datos
-function agregandoVehiculo() {
-    // Le preguntamos al usuario si quiere ungresar un vehículo a la base de datos
-    pregunta = prompt("Quiere ingresar un nuevo vehículo a la base de datos? SI/NO");
-    // Si la prespuesta es "si" se invoca la funcion para ingresar datos
-    if (pregunta.toLowerCase() == "si") {
-        while (pregunta.toLowerCase() != "no") {
-            ingreseAuto();
-            pregunta = prompt("Quiere ingresar un nuevo vehículo a la base de datos? SI/NO");
-            if (pregunta.toLowerCase() != "si"){
-                break;
-            }
-        }
-    } else {
-        pregunta = prompt("Quiere ir al sector de 'Cotizaciones'?");
-        if (pregunta.toLowerCase() == "si") {
-            paraCotizar();
+function guardarVehiculo() {
+    let anio = document.getElementById("anioInput");
+    let marca = document.getElementById("marcaInput");
+    let modelo = document.getElementById("modeloInput");
+    let valor = document.getElementById("valorInput");
+    let nuevoAuto = new Autos(parking.length+1, parseInt(anio.value), marca.value, modelo.value, parseInt(valor.value));
+    let result = confirm(`Confirma el ingreso de ${marca.value} ${modelo.value}, año ${anio.value} a la base de datos?`);
+        if(result == true) {
+            // El auto nuevo se guarda en el array "parking"
+            parking.push(nuevoAuto);
+            console.table(parking);
         }else{
-            opcionesMenu();
+            alert(`El vehículo ${marca.value} ${modelo.value}, año ${anio.value} NO ha sido guardado.`)
         }
-    }
 }
 
-function ingreseAuto() {
-    // Le pedimos al usuario que vaya ingresando los datos del auto
-    let anioAuto = parseInt(prompt(`Ingrese el año del vehículo`));
-    let marcaAuto = prompt(`Ingrese la MARCA del vehículo`);
-    let modeloAuto = prompt(`Ingrese el MODELO del vehículo`);
-    let valorAuto = parseInt(prompt(`Ingrese el VALOR del vehículo`));
-    nuevoAuto = new Autos(parking.length + 1, anioAuto, marcaAuto, modeloAuto, valorAuto),
-    result = confirm(`El vehículo ingresado es un ${marcaAuto}, año ${anioAuto}, modelo ${modeloAuto}, con un valor de $${valorAuto}`)
-        if(result == true){
-            parking.push(nuevoAuto);
-            console.log(nuevoAuto);
-        }else{
-            agregandoVehiculo();
-        };
-}
 
 // Utilización de ForEach para mostrar el catalogo de autos.
+let vehiculos = document.getElementById("vehiculos");
 function mostrarCatalogo() {
-    alert(`A continuación podrá ver el listado de vehículos en la consola`);
-    parking.forEach((auto)=> auto.mostrarDatos());
+    parking.forEach((auto)=>{
+        let nuevaTarjeta = document.createElement("div");
+        nuevaTarjeta.innerHTML = `<article id="${auto.id}" class="cards">
+                                    <ul class="description">
+                                        <li><strong>Marca: ${auto.marca}</strong></li>
+                                        <li>Modelo: ${auto.modelo}</li>
+                                        <li>Año: ${auto.anio}</li>
+                                        <li><b>Valor: $${auto.valor}</b></li>
+                                    </ul>
+                                </article>`;
+        vehiculos.appendChild(nuevaTarjeta);
+    })
+}
+
+function ocultarCatalogo () {
+    vehiculos.innerHTML = ""; // Mala práctica -- Revisar como hacerlo correctamente.
 }
 
 // Funciones empleadas para cotizar vehículos
@@ -218,6 +153,7 @@ function formulaCotizacion(valor) {
         }
 }
 
+
 // Funcion para busqueda de vehiculo en el catalogo
 function busquedaPregunta() {
     let pregunta = parseInt(prompt(`Ingrese el número que corresponde a la MARCA de auto que desea buscar:
@@ -232,40 +168,41 @@ function busquedaPregunta() {
 }
 
 function busquedaResultado (numeroElegido){
+    let busqueda = ""; // declaramos funcion vacio para que cada "case" le de un valor.
     switch(numeroElegido){
         case 0:
             opcionesMenu();
             break;
         case 1:
-            let busqueda1 = parking.filter((auto) => auto.marca === "Volkswagen");
-                busqueda1.forEach((auto)=>console.log(auto.modelo, auto.anio));
+            busqueda = parking.filter((auto) => auto.marca === "Volkswagen");
+            busqueda.forEach((auto)=>console.log(auto.modelo, auto.anio));
             break;
         case 2:
-            let busqueda2 = parking.filter((auto) => auto.marca == "Peugeot");
-            busqueda2.forEach((auto)=>console.log(auto.modelo, auto.anio));
+            busqueda = parking.filter((auto) => auto.marca == "Peugeot");
+            busqueda.forEach((auto)=>console.log(auto.modelo, auto.anio));
             break;
         case 3:
-            let busqueda3 = parking.filter((auto) => auto.marca == "Fiat");
-            busqueda3.forEach((auto)=>console.log(auto.modelo, auto.anio));
+            busqueda = parking.filter((auto) => auto.marca == "Fiat");
+            busqueda.forEach((auto)=>console.log(auto.modelo, auto.anio));
             break;
         case 4:
-            let busqueda4 = parking.filter((auto) => auto.marca == "Toyota");
-            busqueda4.forEach((auto)=>console.log(auto.modelo, auto.anio));
+            busqueda = parking.filter((auto) => auto.marca == "Toyota");
+            busqueda.forEach((auto)=>console.log(auto.modelo, auto.anio));
             break;
         case 5:
-            let busqueda5 = parking.filter((auto) => auto.marca == "Chevrolet");
-            busqueda5.forEach((auto)=>console.log(auto.modelo, auto.anio));
+            busqueda = parking.filter((auto) => auto.marca == "Chevrolet");
+            busqueda.forEach((auto)=>console.log(auto.modelo, auto.anio));
             break;
     }
 }
 
-// CODIGO
+// Evento para Catalogo
+let verCatalogo = document.getElementById(`catalogo`);
+verCatalogo.addEventListener('click', mostrarCatalogo);
 
-let salir
-    while (salir != true) {
-        opcionesMenu()
-    }
+let esconderCatalogo = document.getElementById(`ocultar_catalogo`);
+esconderCatalogo.addEventListener('click', ocultarCatalogo);
 
-// un console.log al fina para mostrar el array Completo
-console.log(parking);
-
+// Evento para Guardar Nuevo Auto
+let botonGuardado = document.getElementById("guardar_auto");
+botonGuardado.addEventListener("click", guardarVehiculo);
