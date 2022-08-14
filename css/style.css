@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+}
+.boton {
+    border: ridge 2px gainsboro;
+    border-radius: 2rem;
+}
+
+.dark_mode {
+    color: whitesmoke;
+    background-color: black;
+}
+
+.titulo {
+    text-align: center;
+    margin: 2rem auto;
+    text-decoration: underline;
+}
+
+.botones_funciones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.boton {
+    border: ridge 2px gainsboro;
+    margin-top: 1rem;
+}
+
+.portada_img {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#e66465, #7d7d83);
+    border: ridge 4px salmon!important;
+    margin: 1rem 2rem;
+}
+
+.card__titulo {
+    color: #292527;
+}
+
+.card__contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #292527;
+}
+
+.card__img {
+    width: 20vw;
+    border-radius: 1rem;
+}
+
+.btn_agregar {
+    border: ridge 2px gainsboro;
+    border-radius: 2rem;
+    margin: 1rem
+}
+
+.nuevo_producto {
+    align-self: center;
+}
+.formulario_producto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: ridge deeppink 5px;
+    padding: 2rem;
+    width: 50vw;
+    margin: 2rem auto;
+    background: linear-gradient(to right, rgb(95, 12, 12), orange);
+}
+
+.formulario_producto form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+}
+
+.labels {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.inputs {
+    border: red solid 2px;
+    border-radius: 2rem;
+    width: 75%;
+}
