@@ -53,12 +53,11 @@ portada.innerHTML = `<img class="portada_img"src="./img/portada.webp" alt="Image
 
 // Evento para dark mode y light mode
 let darkMode
-console.log(localStorage.getItem("darkMode"));
-if(localStorage.getItem("darkMode")) {
-    darkMode = localStorage.getItem("darkMode");
-}else{
-    localStorage.setItem("darkMode", "light");
-}
+    if(localStorage.getItem("darkMode")) {
+        darkMode = localStorage.getItem("darkMode");
+    }else{
+        localStorage.setItem("darkMode", "light");
+    }
 
 if(darkMode == "dark"){
     document.body.classList.add("dark_mode")
@@ -73,8 +72,7 @@ btnLightMode.addEventListener("click", ()=>{
     localStorage.setItem("darkMode", "light")
 })
 
-// 
-
+//  Botones y eventos
 // Boton mostrar productos y evento correspondiente 
 let btnMostrarProductos = document.getElementById(`mostrar_productos`);
 btnMostrarProductos.addEventListener("click", mostrarCatalogo);
@@ -96,26 +94,18 @@ botonCarrito.addEventListener('click', ()=> {
 if(localStorage.getItem("paletero")) { // If el array paletero tiene algo cuando cargamos la pagina....
     paletero = JSON.parse(localStorage.getItem("paletero")); // nos traemos eso que tenga.
 }else {
-    console.log(`Se carga el paletero por primera vez`); // si el array no tiene nada cuando cargamos pagina
     paletero.push(items1, items2, items3, items4, items5, items6, items7, items8, items9, items10, items11, items12, items13, items14, items15, items16, items17, items18, items19); //empujamos al paletero todos los items que hayan en el array.
     localStorage.setItem("paletero", JSON.stringify(paletero)); // y los cargamos al localStorage.
 }
-console.table(paletero);
 
 // Iniciamos el carrito de compras
 if(localStorage.getItem("carrito")) {
-    carritoCompras = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carritoCompras);
+    carritoCompras = JSON.parse(localStorage.getItem("carrito")); // Lo mismo que "paletero", nos traemos el contenido
 }else {
-    console.log("No hay items en su carrito");
-    localStorage.setItem("carrito", []);
+    localStorage.setItem("carrito", []); // Si el carrito no tenía nada, lo inicializamos vacío.
 }
 
 // Declaración de FUNCIONES
-const alerta = (mensaje)=>{
-    alert(mensaje);
-}
-
 function mostrarCatalogo() {
     sectionCatalogo.innerHTML = "";
     nuevoProducto.innerHTML = ``;
@@ -178,7 +168,6 @@ function guardarNuevo() {
     let anioInput = document.getElementById(`anio_input`).value;
     let precioInput = document.getElementById(`precio_input`).value;
     itemCreado = new Items(paletero.lenght+1, tipoInput, "./img/generico.jpg", marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput));
-    console.log(itemCreado);
     paletero.push(itemCreado);
     localStorage.setItem("paletero", JSON.stringify(paletero));
 }
@@ -188,10 +177,9 @@ function agregarItem(item) {
     carritoCompras.push(item);
     // Se carga al storage para que se mantenga en el carrito si cierra la pestaña
     localStorage.setItem("carrito", JSON.stringify(carritoCompras));
-    console.log(carritoCompras);
 }
 
-function mostrarProductosCarrito(productosDelStorage) { //NO ME MUESTRA LOS ITEMS EN EL MODAL.
+function mostrarProductosCarrito(productosDelStorage) {
     modalBody.innerHTML = "";
     productosDelStorage.forEach((item) => {
         modalBody.innerHTML += `<article id="${item.id}" class="card">
