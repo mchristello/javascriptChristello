@@ -6,7 +6,7 @@
 
 .nav-bar {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 
 }
 
@@ -31,12 +31,19 @@
     text-decoration: underline;
 }
 
+.barra_botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .botones_funciones {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 5rem;
+    z-index: 999;
 }
 
 .boton {
@@ -48,7 +55,10 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
+    z-index: -1;
 }
+
+/* Style Cards */
 
 .catalogo {
     display: grid;
@@ -88,9 +98,12 @@
     margin: 1rem
 }
 
+/* Style Formulario Nuevo Producto */
+
 .nuevo_producto {
     align-self: center;
 }
+
 .formulario_producto {
     display: flex;
     flex-direction: column;

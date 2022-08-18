@@ -33,10 +33,13 @@ let items18 = new Items(18, `Bolso`, `img/Bullpadel_BolsoFlow.jpg`, `Bullpadel`,
 let items19 = new Items(19, `Bolso`, `img/Bolso_AT10.webp`, `Nox`, `AT10`, 2021, 21400);
 
 let paletero = [];
-let carritoCompras = [];
+
+// Iniciamos el carrito de compras con operador OR.
+const carritoCompras = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Elementos del DOM.
 let botonCarrito = document.getElementById(`boton_carrito`);
+let contadorItems = document.getElementById(`contador`);
 let modalBody = document.getElementById("modal-body");
 let finalizarCompra = document.getElementById(`pagar`);
 let contenidoModal = document.getElementById(`precioTotal`);
@@ -49,27 +52,26 @@ let sectionCatalogo = document.getElementById("catalogo");
 let nuevoProducto = document.getElementById(`nuevo_producto`);
 
 let portada = document.getElementById(`portada`);
-portada.innerHTML = `<img class="portada_img"src="./img/portada.webp" alt="Imagen palas y pelotas">`;
+portada.innerHTML = `<img class="portada_img"src="./img/portada_light.jpg" alt="Imagen palas y pelotas">`;
+
 
 // Evento para dark mode y light mode
 let darkMode
-    if(localStorage.getItem("darkMode")) {
-        darkMode = localStorage.getItem("darkMode");
-    }else{
-        localStorage.setItem("darkMode", "light");
-    }
+(localStorage.getItem("darkMode")) ? darkMode = localStorage.getItem("darkMode") : (localStorage.setItem("darkMode", "light"));
 
 if(darkMode == "dark"){
-    document.body.classList.add("dark_mode")
+    document.body.classList.add("dark_mode");
+    portada.innerHTML = `<img class="portada_img"src="./img/portada.webp" alt="Imagen palas y pelotas">`;  
 }
 btnDarkMode.addEventListener("click", ()=>{
     document.body.classList.add("dark_mode")
     localStorage.setItem("darkMode", "dark")
-
+    portada.innerHTML = `<img class="portada_img"src="./img/portada.webp" alt="Imagen palas y pelotas">`;
 })
 btnLightMode.addEventListener("click", ()=>{
     document.body.classList.remove("dark_mode")
     localStorage.setItem("darkMode", "light")
+    portada.innerHTML = `<img class="portada_img"src="./img/portada_light.jpg" alt="Imagen palas y pelotas">`;
 })
 
 //  Botones y eventos
@@ -96,13 +98,6 @@ if(localStorage.getItem("paletero")) { // If el array paletero tiene algo cuando
 }else {
     paletero.push(items1, items2, items3, items4, items5, items6, items7, items8, items9, items10, items11, items12, items13, items14, items15, items16, items17, items18, items19); //empujamos al paletero todos los items que hayan en el array.
     localStorage.setItem("paletero", JSON.stringify(paletero)); // y los cargamos al localStorage.
-}
-
-// Iniciamos el carrito de compras
-if(localStorage.getItem("carrito")) {
-    carritoCompras = JSON.parse(localStorage.getItem("carrito")); // Lo mismo que "paletero", nos traemos el contenido
-}else {
-    localStorage.setItem("carrito", []); // Si el carrito no tenía nada, lo inicializamos vacío.
 }
 
 // Declaración de FUNCIONES
@@ -133,7 +128,7 @@ function mostrarCatalogo() {
 function ocultarCatalogo() {
     sectionCatalogo.innerHTML = "";
     nuevoProducto.innerHTML = ``;
-    portada.innerHTML = `<img class="portada_img" src="./img/portada.webp" alt="Imagen palas y pelotas">`;
+    darkMode == "dark"?portada.innerHTML = `<img class="portada_img" src="./img/portada.webp" alt="Imagen palas y pelotas">`:portada.innerHTML = `<img class="portada_img"src="./img/portada_light.jpg" alt="Imagen palas y pelotas">`;
 }
 
 function crearProducto() {
@@ -167,13 +162,32 @@ function guardarNuevo() {
     let modeloInput = document.getElementById(`modelo_input`).value;
     let anioInput = document.getElementById(`anio_input`).value;
     let precioInput = document.getElementById(`precio_input`).value;
-    itemCreado = new Items(paletero.lenght+1, tipoInput, "./img/generico.jpg", marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput));
+    itemCreado = new Items(parseInt(paletero.length+1), tipoInput, "./img/generico.jpg", marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput));
+    Toastify({
+        text: `Agregaste ${tipoInput} ${marcaInput}`,
+        duration: 2000,
+        newWindow: false,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #8a2387, #e94057, #f27121)",
+        }
+    }).showToast();
     paletero.push(itemCreado);
     localStorage.setItem("paletero", JSON.stringify(paletero));
 }
 
 function agregarItem(item) {
-    alert(`Has agregado el item ${item.tipo} ${item.marca} ${item.modelo} al carrito.`);
+    Swal.fire({
+        title: 'Excelente!',
+        text: `Agregaste ${item.tipo} ${item.marca} ${item.modelo}`,
+        icon: 'success',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false,
+    })
     carritoCompras.push(item);
     // Se carga al storage para que se mantenga en el carrito si cierra la pestaña
     localStorage.setItem("carrito", JSON.stringify(carritoCompras));
@@ -186,25 +200,55 @@ function mostrarProductosCarrito(productosDelStorage) {
                                     <h3 class="card__titulo">${item.marca} ${item.modelo}</h3>
                                     <img class="card__img" src="${item.imagen}" alt="${item.marca} ${item.modelo}">
                                     <div class="card__contenido">
-                                        <p class="card__texto">${item.tipo}</p>
-                                        <p class="card__texto">${item.marca} ${item.modelo}</p>
-                                        <p class="card__texto">${item.anio}</p>
+                                        <p class="card__texto--tipo">${item.tipo}</p>
+                                        <p class="card__texto--marca">${item.marca} ${item.modelo}</p>
+                                        <p class="card__texto--año">${item.anio}</p>
                                         <p class="card__precio">$${item.precio}</p>
-                                        <button class="btn_agregar" id="Eliminar ${item.id}"> Eliminar del Carrito </button>
+                                        <button class="btn_agregar" id="eliminar${item.id}">Eliminar del Carrito</button>
                                     </div>
                                 </article>`;
     })
-    totalCompra(productosDelStorage)
+    totalCompra(...productosDelStorage);
+
+    productosDelStorage.forEach((item, index)=> {
+        document.getElementById(`eliminar${item.id}`).addEventListener(`click`, () => {
+            Swal.fire({
+                title: `Lo has eliminado!`,
+                text: `Has eliminado ${item.tipo} ${item.marca} ${item.modelo} del carrito`,
+                icon: `warning`,
+                confirmButtonText: `OK`
+            })
+            let productoEliminado = document.getElementById(`${item.id}`)
+            productoEliminado.remove();
+
+            carritoCompras.splice(index, 1);
+            localStorage.setItem(`carrito`, JSON.stringify(carritoCompras));
+            mostrarProductosCarrito(carritoCompras)
+        })
+    })
 }
 
-function totalCompra(totalProductos) {
+// let botonEliminar = document.getElementsByClassName(`btn_agregar`);
+// for(let i=0; i < botonEliminar.length; i++) {
+//     botonEliminar[i].addEventListener(`click`, eliminarItem);
+// }
+
+// function eliminarItem(){
+//     console.log(this.id);
+// }
+
+function totalCompra(...totalProductos) {  // Spread para la funcion del importe total del carrito.
     acumulador = 0;
-    totalProductos.forEach((item) => {
-        acumulador += item.precio
-    })
-    if(acumulador == 0){
-        contenidoModal.innerHTML = `<p>No hay productos en el carrito</p>`
-    }else{
-        contenidoModal.innerHTML = `El total de su compra es $${acumulador}`
-    }
+    acumulador = totalProductos.reduce((acc, item) => {
+        return acc + item.precio
+    }, 0);
+    acumulador>0 ? contenidoModal.innerHTML = `El total de su compra es $${acumulador}` : contenidoModal.innerHTML=`<p>No hay prodcutor en el Carrito</p>`; // Acumulador con Operador Ternario.
 }
+
+// Desestructurar el array
+let [a, b, , c, d, e, , , , , , , , , , , , , , f] = paletero;
+console.log(a);
+console.log(b);
+console.log(c);
+console.log(paletero);
+console.log(f);
