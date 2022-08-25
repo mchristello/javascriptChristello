@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- Link de FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- Link de Tostify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Link de Bootstrap -->
@@ -21,20 +21,15 @@
 
 <body>
     <div class="barra_botones">
-        <nav class="nav-bar">            
-            <span class="fa-layers fa-fw" style="background:MistyRose">
-                <a id="boton_carrito" data-bs-toggle="modal" data-bs-target="#idModal"
-                    class="btn btn-secondary"><i class="fas fa-shopping-cart fa-2x"></i></a>
-                <span id="contador" class="fa-layers-counter" style="background:Tomato">0</span>
+        <nav class="nav-bar">
+            <span class="fa-layers fa-layers-bottom-right">
+                <a id="boton_carrito" data-bs-toggle="modal" data-bs-target="#idModal" class="btn btn-secondary"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                <span id="contador" class="fa-layers-counter contador"></span>
             </span>
+            <a href="" id="boton_sesion"><i class="fa-duotone fa-arrow-right-to-bracket"></i></a>
         </nav>
-
-        <div class="botones">
-            <button id="btn__dark_mode" class=" boton">Dark Mode</button>
-            <button id="btn__light_mode" class=" boton">Light Mode</button>
-        </div>
     </div>
-    
+
     <main>
         <!-- Modal Carrito -->
         <div class="modal fade" id="idModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,24 +40,22 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="modal-body">
-    
+
                     </div>
                     <div class="row ml-ato">
                         <p id="precioTotal"></p>
                     </div>
                     <div class="modal-footer">
-    
-    
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-success"
-                            id="pagar">Finalizar Compra</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="pagar">Pagar</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Cuerpo de la página -->
-        <h1 class="titulo"> Bienvenidos a la mejor tienda de PADEL.</h1>
+
+        <h1 class="titulo"> Bienvenidos a tu tienda de PADEL. </h1>
 
         <section id="botones_funciones" class="botones_funciones">
             <button id="mostrar_productos" class="boton">Mostrar Productos</button>
@@ -70,9 +63,9 @@
             <button id="crear_producto" class="boton">Crear Producto</button>
         </section>
 
-        <section id="portada" class="portada">
+        <div id="loading" class="loading">
 
-        </section>
+        </div>
 
         <section id="catalogo" class="catalogo">
 
@@ -84,7 +77,12 @@
 
     </main>
 
-    <script src="./js/ecomerce.js"></script>
+    <!-- Script de Clases -->
+    <script src="js/class.js"></script>
+    <!-- Script de Functions -->
+    <script src="js/functions.js"></script>
+    <!-- Script de Codigo -->
+    <script src="./js/codigo.js"></script>
     <!-- Script SweetAlert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Script de Tostify -->

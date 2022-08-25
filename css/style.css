@@ -1,40 +1,55 @@
+/* Import */
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Marvel:wght@400;700&family=Roboto+Slab:wght@300;700&display=swap');
+
+/* font-family: 'Fredericka the Great', cursive;
+font-family: 'Marvel', sans-serif;
+font-family: 'Roboto Slab', serif; */
+
+/* Normalize */
 * {
     margin: 0;
     border: 0;
     box-sizing: border-box;
 }
 
+/* Style */
+
+body {
+    font-family: 'Roboto Slab', serif;
+    background: url(../img/portada.webp);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: snow;
+}
+
 .nav-bar {
     display: flex;
     flex-direction: row;
-
-}
-
-.botones {
-    display: flex;
-    flex-direction: column;
-    width: 10vw;
-}
-.boton {
-    border: ridge 2px gainsboro;
-    border-radius: 2rem;
-}
-
-.dark_mode {
-    color: whitesmoke;
-    background-color: black;
 }
 
 .titulo {
     text-align: center;
     margin: 2rem auto;
     text-decoration: underline;
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: bold;
+    color: snow;
+}
+
+.boton {
+    border: ridge 2px gainsboro;
+    border-radius: 2rem;
+    font-family: 'Marvel', sans-serif;
+    font-size: 1.2rem;
+    margin-top: 1rem;
 }
 
 .barra_botones {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
 }
 
 .botones_funciones {
@@ -43,27 +58,32 @@
     align-items: center;
     justify-content: center;
     gap: 5rem;
-    z-index: 999;
 }
 
-.boton {
-    border: ridge 2px gainsboro;
-    margin-top: 1rem;
+#boton_carrito {
+    --bs-btn-color: #424141;
+    --bs-btn-bg: #aedb4a;
 }
 
-.portada_img {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+#contador {
+    background: tomato;
+    font-size: 1.8rem;
+    border-radius: 1rem;
 }
 
 /* Style Cards */
 
+.loading {
+    text-align: center;
+    font-size: 2rem;
+    color: snow;
+}
+
 .catalogo {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 25%);
     gap: 2rem;
+    justify-content: center;
 }
 
 .card {
@@ -71,31 +91,30 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(#e66465, #7d7d83);
-    border: ridge 4px salmon!important;
+    font-family: 'Marvel', sans-serif;
+    font-size: 1.4rem;
+    background: linear-gradient(#f2924c, #d3d3e6);
+    border: ridge 4px rgb(182, 253, 172) !important;
     margin: 1rem 2rem;
-}
-
-.card__titulo {
-    color: #292527;
+    opacity: 0.95;
 }
 
 .card__contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #292527;
 }
 
 .card__img {
-    width: 20vw;
+    width: 12vw;
+    height: 20vh;
     border-radius: 1rem;
 }
 
 .btn_agregar {
     border: ridge 2px gainsboro;
     border-radius: 2rem;
-    margin: 1rem
+    margin: 1rem;
 }
 
 /* Style Formulario Nuevo Producto */
@@ -109,6 +128,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Roboto Slab', serif;
     border: ridge deeppink 5px;
     padding: 2rem;
     width: 50vw;
@@ -122,6 +142,7 @@
     justify-content: center;
     align-items: center;
     width: 50vw;
+    font-family: 'Roboto Slab', serif;
 }
 
 .labels {
@@ -133,4 +154,21 @@
     border: red solid 2px;
     border-radius: 2rem;
     width: 75%;
+}
+
+/* Modal */
+
+.modal {
+    --bs-modal-bg: #c1d58d !important;
+}
+
+.modal p {
+    font-family: 'Marvel', sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.modal-title {
+    font-family: 'Marvel', sans-serif;
+    font-size: 2rem;
 }
