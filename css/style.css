@@ -30,7 +30,8 @@ body {
 
 .titulo {
     text-align: center;
-    margin: 2rem auto;
+    font-size: 4rem;
+    margin: 5rem auto;
     text-decoration: underline;
     font-family: 'Fredericka the Great', cursive;
     font-weight: bold;
@@ -45,11 +46,19 @@ body {
     margin-top: 1rem;
 }
 
+.boton:hover {
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
+    background-color: #76f376;
+}
+
+
 .barra_botones {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
+    top: 1rem;
+    z-index: 1;
 }
 
 .botones_funciones {
@@ -58,11 +67,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: 5rem;
+    margin: 5rem auto;
 }
 
 #boton_carrito {
     --bs-btn-color: #424141;
     --bs-btn-bg: #aedb4a;
+    margin-left: 2rem;
 }
 
 #contador {
@@ -81,21 +92,20 @@ body {
 
 .catalogo {
     display: grid;
-    grid-template-columns: repeat(3, 25%);
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
     justify-content: center;
+    margin: 0 4rem;
 }
 
 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-family: 'Marvel', sans-serif;
-    font-size: 1.4rem;
-    background: linear-gradient(#f2924c, #d3d3e6);
-    border: ridge 4px rgb(182, 253, 172) !important;
-    margin: 1rem 2rem;
+    font-size: 1.6rem;
+    background: linear-gradient(to right, #ada996, #ffffff, #c7c6c6, #ad9696);
+    border: ridge 4px rgb(253, 198, 172) !important;
     opacity: 0.95;
 }
 
@@ -106,9 +116,10 @@ body {
 }
 
 .card__img {
-    width: 12vw;
-    height: 20vh;
+    width: 75%;
+    height: 24vh;
     border-radius: 1rem;
+    border: ridge 2px rgba(247, 175, 42, 0.781);
 }
 
 .btn_agregar {
@@ -133,7 +144,7 @@ body {
     padding: 2rem;
     width: 50vw;
     margin: 2rem auto;
-    background: linear-gradient(to right, rgb(95, 12, 12), orange);
+    background: linear-gradient(to right, #ffefba, #ffffff);
 }
 
 .formulario_producto form {
@@ -171,4 +182,31 @@ body {
 .modal-title {
     font-family: 'Marvel', sans-serif;
     font-size: 2rem;
+}
+
+/* Media Queris */
+
+@media only screen and (max-width: 1200px) {
+    .catalogo {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        justify-content: center;
+        margin: 0 4rem;
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    .catalogo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .botones_funciones {
+        gap: 1rem;
+    }
+
+    .catalogo {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

@@ -150,7 +150,7 @@
         "marca": "Bullpadel",
         "modelo": "Vertex",
         "anio": 2022,
-        "precio": 24900
+        "precio": 20900
     },
     {
         "id": 18,
@@ -159,7 +159,7 @@
         "marca": "Bullpadel",
         "modelo": "Flow",
         "anio": 2022,
-        "precio": 19800
+        "precio": 19900
     },
     {
         "id": 19,
@@ -168,6 +168,6 @@
         "marca": "NOX",
         "modelo": "AT10",
         "anio": 2021,
-        "precio": 21400
+        "precio": 12500
     }
 ]

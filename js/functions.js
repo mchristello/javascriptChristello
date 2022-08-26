@@ -11,7 +11,7 @@ function mostrarCatalogo() {
                                         <p class="card__texto">${item.tipo} ${item.marca} ${item.modelo}</p>
                                         <p class="card__texto">Año ${item.anio}</p>
                                         <p class="card__precio">$${item.precio}</p>
-                                        <button class="btn_agregar" id="boton_agregar${item.id}"> Agregar al Carrito </button>
+                                        <button class="btn_agregar boton" id="boton_agregar${item.id}"> Agregar al Carrito </button>
                                     </div>
                                 </article>`
         sectionCatalogo.appendChild(nuevoItem);
@@ -43,6 +43,8 @@ function crearProducto() {
                                     <input type="text" id="anio_input" class="inputs">
                                     <label for="precio" class="labels">Precio</label>
                                     <input type="text" id="precio_input" class="inputs">
+                                    <label for="img" class="labels">URL Imagen</label>
+                                    <input type="url" id="img_input" class="inputs">
                                 </form>
                                 <button id="boton_guardar" class="boton"> Guardar</button>`;
     nuevoProducto.appendChild(agregarProdcuto);
@@ -52,11 +54,12 @@ function crearProducto() {
 
 function guardarNuevo() {
     let tipoInput = document.getElementById(`tipo_input`).value;
+    let imgInput = document.getElementById(`img_input`).value;
     let marcaInput = document.getElementById(`marca_input`).value;
     let modeloInput = document.getElementById(`modelo_input`).value;
     let anioInput = document.getElementById(`anio_input`).value;
     let precioInput = document.getElementById(`precio_input`).value;
-    itemCreado = new Items(parseInt(paletero.length+1), tipoInput, "./img/generico.jpg", marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput));
+    itemCreado = new Items(parseInt(paletero.length+1), tipoInput, imgInput, marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput));
     Toastify({
         text: `Agregaste ${tipoInput} ${marcaInput}`,
         duration: 2000,
@@ -110,7 +113,7 @@ function mostrarProductosCarrito(productosDelStorage) {
                                         <p class="card__texto--marca">${item.marca} ${item.modelo}</p>
                                         <p class="card__texto--año">${item.anio}</p>
                                         <p class="card__precio">$${item.precio}</p>
-                                        <button class="btn_agregar" id="eliminar${item.id}">Eliminar del Carrito</button>
+                                        <button class="btn_agregar boton" id="eliminar${item.id}">Eliminar del Carrito</button>
                                     </div>
                                 </article>`;
     })
