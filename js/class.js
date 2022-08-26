@@ -22,7 +22,7 @@ fetch(`productos.json`)
     info.forEach((item) => {
         paletero.push(item);
     })
-});
+})
 
 
 

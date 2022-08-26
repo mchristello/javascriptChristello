@@ -9,15 +9,15 @@ function mostrarCatalogo() {
                                     <img class="card__img" src="${item.imagen}" alt="${item.marca} ${item.modelo}">
                                     <div class="card__contenido">
                                         <p class="card__texto">${item.tipo} ${item.marca} ${item.modelo}</p>
-                                        <p class="card__texto">Año ${item.anio}</p>
+                                        <p class="card__año">Año ${item.anio}</p>
                                         <p class="card__precio">$${item.precio}</p>
-                                        <button class="btn_agregar boton" id="boton_agregar${item.id}"> Agregar al Carrito </button>
+                                        <button class="btn_agregar" id="boton_agregar${item.id}"> Agregar al Carrito </button>
                                     </div>
                                 </article>`
         sectionCatalogo.appendChild(nuevoItem);
         // Evento para agregar los productos al carrito.
         let btnAgregar = document.getElementById(`boton_agregar${item.id}`);
-        btnAgregar.addEventListener("click", () => {agregarItem(item)})
+        btnAgregar.addEventListener("click", () => {agregarItem(item)});
     })
 }
 
@@ -34,9 +34,9 @@ function crearProducto() {
     agregarProdcuto.innerHTML = `<h3>Crear producto para venta</h3>
                                 <form>
                                     <label for="tipo" class="labels">Tipo</label>
-                                    <input type="text" id="tipo_input" class="inputs">
+                                    <input type="text" id="tipo_input" class="inputs" placeholder="Pala, Bolso, Zapatilla, etc">
                                     <label for="marca" class="labels">Marca</label>
-                                    <input type="text" id="marca_input" class="inputs">
+                                    <input type="text" id="marca_input" class="inputs" placeholder="NOX, Bullpadel, Head, etc">
                                     <label for="modelo" class="labels">Modelo</label>
                                     <input type="text" id="modelo_input" class="inputs">
                                     <label for="año" class="labels">Año</label>
@@ -44,9 +44,9 @@ function crearProducto() {
                                     <label for="precio" class="labels">Precio</label>
                                     <input type="text" id="precio_input" class="inputs">
                                     <label for="img" class="labels">URL Imagen</label>
-                                    <input type="url" id="img_input" class="inputs">
+                                    <input type="url" id="img_input" class="inputs" placeholder="Ingresa la URL de la imágen a mostrar en el catálogo.">
                                 </form>
-                                <button id="boton_guardar" class="boton"> Guardar</button>`;
+                                <button id="boton_guardar" class="boton btn_agregar"> Guardar</button>`;
     nuevoProducto.appendChild(agregarProdcuto);
     let btnGuardar = document.getElementById(`boton_guardar`);
     btnGuardar.addEventListener(`click`, guardarNuevo);

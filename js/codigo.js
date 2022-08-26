@@ -24,13 +24,12 @@ let divLoading = document.getElementById(`loading`);
 
 
 // Botones y eventos
-
 // Boton mostrar productos y evento correspondiente 
 let btnMostrarProductos = document.getElementById(`mostrar_productos`);
 btnMostrarProductos.addEventListener("click", () => {
     sectionCatalogo.innerHTML = "";
     nuevoProducto.innerHTML = ``;
-    divLoading.setAttribute(`style`, `display: block`);
+    divLoading.setAttribute(`style`, `display: block; font-family: 'Marvel', sans-serif; color: black;`);
     divLoading.innerHTML = `<div class="d-flex justify-content-center align-items-center">
                                 <strong>Cargando el catalogo de productos...</strong>
                                 <div class="spinner-border m-5 text-info" style="width: 3rem; height: 3rem;" role="status">
@@ -38,9 +37,9 @@ btnMostrarProductos.addEventListener("click", () => {
                             </div>`;    
     setTimeout(()=> {                    
         // Se borra el divLoading para darle lugar al catálogo
-        divLoading.setAttribute(`style`,`display:none`);
+        divLoading.setAttribute(`style`,`display:none;`);
         // Se muestra el catalogo de productos.
-        mostrarCatalogo();
+        mostrarCatalogo()
     }, 2000);    
 });    
 

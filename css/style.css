@@ -12,15 +12,21 @@ font-family: 'Roboto Slab', serif; */
     box-sizing: border-box;
 }
 
-/* Style */
-
 body {
     font-family: 'Roboto Slab', serif;
-    background: url(../img/portada.webp);
+    background: url(https://img.freepik.com/fotos-premium/bola-amarilla-piso-detras-red-paddle-cancha-azul-al-aire-libre-hombre-que-juega-al-padel-jugador-caucasico-deportista-golpeando-pelotas-concepto-juego-deporte-raqueta_352173-3719.jpg);
     background-repeat: no-repeat;
     background-size:cover;
     background-attachment: fixed;
     color: snow;
+}
+
+/* Style */
+
+.destacado {
+    color: red;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .nav-bar {
@@ -35,21 +41,65 @@ body {
     text-decoration: underline;
     font-family: 'Fredericka the Great', cursive;
     font-weight: bold;
-    color: snow;
+    color: #292828;
 }
 
 .boton {
-    border: ridge 2px gainsboro;
+    position: relative;
+    margin: .5rem auto;
+    width: 10rem;
     border-radius: 2rem;
-    font-family: 'Marvel', sans-serif;
-    font-size: 1.2rem;
-    margin-top: 1rem;
+    text-transform: uppercase;
 }
 
-.boton:hover {
-    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
-    background-color: #76f376;
+.dot {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 1rem;
+    height: 100%;
+    transition: all 300ms ease;
+    display: none;
 }
+
+.btn {
+    --bs-btn-color: black !important;
+    --bs-btn-border-color: none !important;
+    --bs-btn-font-weight: 600 !important;
+}
+
+.btn:hover {
+    color: #a70000 !important;
+}
+
+.dot:after {
+    content: '';
+    position: absolute;
+    left: calc(50% - .4em);
+    top: -.4em;
+    height: 1.2rem;
+    width: 1.2rem;
+    background: #dbfa54;
+    border-radius: 1em;
+    border: 1px rgb(251, 252, 248);
+    box-shadow: 0 0 .7em rgb(210, 233, 80),
+                0 0 2em #cfff4a;
+}
+
+.btn:hover .dot,
+.btn:focus .dot {
+    animation: atom 2s infinite linear;
+    display: block;
+}
+
+@keyframes atom {
+    0% {transform: translateX(0) rotate(0);}
+    30%{transform: translateX(8rem) rotate(0);}
+    50% {transform: translateX(8rem) rotate(180deg);}
+    80% {transform: translateX(0) rotate(180deg);}
+    100% {transform: translateX(0) rotate(360deg);}
+}
+
 
 
 .barra_botones {
@@ -68,11 +118,18 @@ body {
     justify-content: center;
     gap: 5rem;
     margin: 5rem auto;
+    background: rgba( 145, 196, 236, 0.2 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 #boton_carrito {
-    --bs-btn-color: #424141;
-    --bs-btn-bg: #aedb4a;
+    --bs-btn-color: #131313 !important;
+    --bs-btn-bg: #e3f376 !important;
+    background-color: #f8c75d !important;
     margin-left: 2rem;
 }
 
@@ -80,6 +137,18 @@ body {
     background: tomato;
     font-size: 1.8rem;
     border-radius: 1rem;
+}
+
+.bienvenida {
+    font-family: 'Marvel', sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 2rem 5rem;
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 /* Style Cards */
@@ -99,25 +168,36 @@ body {
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     font-family: 'Marvel', sans-serif;
     font-size: 1.6rem;
-    background: linear-gradient(to right, #ada996, #ffffff, #c7c6c6, #ad9696);
-    border: ridge 4px rgb(253, 198, 172) !important;
-    opacity: 0.95;
+    background: linear-gradient(to right, #054c14f0, #fff, #bbdbad, #b9e0ba);
+    box-shadow: -5px 7px 7px 0px rgb(41 39 39);
+    backdrop-filter: blur(8px);
+    border-radius: 2rem !important;
+    border: inset 4px #06060657 !important;
+}
+
+.card__titulo {
+    font-size: 2rem;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.card__precio {
+    font-weight: bold;
+    color: green;
 }
 
 .card__contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .card__img {
     width: 75%;
-    height: 24vh;
     border-radius: 1rem;
     border: ridge 2px rgba(247, 175, 42, 0.781);
 }
@@ -125,7 +205,13 @@ body {
 .btn_agregar {
     border: ridge 2px gainsboro;
     border-radius: 2rem;
-    margin: 2rem;
+    margin: 1rem;
+    font-size: 1.2rem;
+}
+
+.btn_agregar:hover {
+    box-shadow: -5px 5px 4px 2px rgb(29 30 31 / 70%), 0 4px 8px 3px rgb(60 64 67 / 16%);
+    background-color: #76f376;
 }
 
 /* Style Formulario Nuevo Producto */
@@ -140,11 +226,19 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Roboto Slab', serif;
-    border: ridge deeppink 5px;
+    text-align: center;
+    border: ridge #d8f4a4 5px;
     padding: 2rem;
     width: 50vw;
     margin: 2rem auto;
     background: linear-gradient(to right, #ffefba, #ffffff);
+}
+
+.formulario_producto h3 {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 2rem;
+    text-decoration: underline double;
+    text-transform: capitalize;
 }
 
 .formulario_producto form {
@@ -158,13 +252,15 @@ body {
 
 .labels {
     text-decoration: underline;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 
 .inputs {
-    border: red solid 2px;
+    border: #60cbf4 solid 2px;
     border-radius: 2rem;
     width: 75%;
+    text-align: center;
 }
 
 /* Modal */
@@ -184,9 +280,59 @@ body {
     font-size: 2rem;
 }
 
-/* Media Queris */
+.modal-body article {
+    margin: 2rem;
+}
 
+/* Style Footer */
+
+.footer {
+    min-height: 7rem;
+    width: 100%;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    color: snow;
+    background: rgba( 255, 247, 247, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 5.5px );
+    -webkit-backdrop-filter: blur( 5.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.footer p {
+    text-align: center;
+    width: 80%; 
+}
+
+.footer .destacado {
+    color: #f79400;
+    font-style: italic;
+    font-weight: bold; 
+}
+
+.footer__redes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 40%;
+    margin-right: 5rem; 
+}
+
+.footer__redes img {
+    width: 3rem; 
+}
+
+
+/* Media Queris */
+/* Media Queris menor a 1200px  */
 @media only screen and (max-width: 1200px) {
+
     .catalogo {
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
@@ -195,18 +341,45 @@ body {
     }
 }
 
+/* Media Queris menor a 860px */
 @media only screen and (max-width: 860px) {
+
     .catalogo {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media only screen and (max-width: 450px) {
+/* Media Queris menor a 450px*/
+@media only screen and (max-width: 540px) {
+
+    .bienvenida {
+        font-size: 1.4rem;
+        text-align: center;
+        margin: 1rem 1rem;
+    }
+
     .botones_funciones {
         gap: 1rem;
     }
 
     .catalogo {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .formulario_producto {
+        width: 90vw;
+    }
+
+    .inputs {
+        width: 85vw;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer__redes {
+        margin: 0 auto;
+
     }
 }
