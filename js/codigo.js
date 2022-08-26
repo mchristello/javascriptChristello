@@ -40,7 +40,7 @@ btnMostrarProductos.addEventListener("click", () => {
         // Se borra el divLoading para darle lugar al catálogo
         divLoading.setAttribute(`style`,`display:none`);
         // Se muestra el catalogo de productos.
-        mostrarCatalogo()
+        mostrarCatalogo();
     }, 2000);    
 });    
 

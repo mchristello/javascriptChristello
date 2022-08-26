@@ -17,7 +17,7 @@ function mostrarCatalogo() {
         sectionCatalogo.appendChild(nuevoItem);
         // Evento para agregar los productos al carrito.
         let btnAgregar = document.getElementById(`boton_agregar${item.id}`);
-        btnAgregar.addEventListener("click", () => {agregarItem(item)});
+        btnAgregar.addEventListener("click", () => {agregarItem(item)})
     })
 }
 
