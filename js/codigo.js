@@ -15,8 +15,6 @@ let modalBody = document.getElementById("modal-body");
 let contenidoModal = document.getElementById(`precioTotal`);
 let pagarModal = document.getElementById(`pagar`);
 
-let btnDarkMode = document.getElementById(`btn__dark_mode`);
-let btnLightMode = document.getElementById(`btn__light_mode`);
 let sectionCatalogo = document.getElementById("catalogo");
 
 let nuevoProducto = document.getElementById(`nuevo_producto`);
@@ -29,7 +27,7 @@ let btnMostrarProductos = document.getElementById(`mostrar_productos`);
 btnMostrarProductos.addEventListener("click", () => {
     sectionCatalogo.innerHTML = "";
     nuevoProducto.innerHTML = ``;
-    divLoading.setAttribute(`style`, `display: block; font-family: 'Marvel', sans-serif; color: black;`);
+    divLoading.setAttribute(`style`, `display: block;`);
     divLoading.innerHTML = `<div class="d-flex justify-content-center align-items-center">
                                 <strong>Cargando el catalogo de productos...</strong>
                                 <div class="spinner-border m-5 text-info" style="width: 3rem; height: 3rem;" role="status">

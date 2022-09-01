@@ -8,7 +8,7 @@ font-family: 'Roboto Slab', serif; */
 /* Normalize */
 * {
     margin: 0;
-    border: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -69,7 +69,7 @@ body {
 }
 
 .btn:hover {
-    color: #a70000 !important;
+    color: snow !important;
 }
 
 .dot:after {
@@ -82,7 +82,7 @@ body {
     background: #dbfa54;
     border-radius: 1em;
     border: 1px rgb(251, 252, 248);
-    box-shadow: 0 0 .7em rgb(210, 233, 80),
+    box-shadow: 0 0 .7em #d2e950,
                 0 0 2em #cfff4a;
 }
 
@@ -118,18 +118,16 @@ body {
     justify-content: center;
     gap: 5rem;
     margin: 5rem auto;
-    background: rgba( 145, 196, 236, 0.2 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background: #91c4ec33;
+    box-shadow: 0 8px 32px 0 #1f26875e;
     backdrop-filter: blur( 10px );
-    -webkit-backdrop-filter: blur( 10px );
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid #ffffff2e;
 }
 
 #boton_carrito {
     --bs-btn-color: #131313 !important;
-    --bs-btn-bg: #e3f376 !important;
-    background-color: #f8c75d !important;
+    background-color: #85f75c !important;
     margin-left: 2rem;
 }
 
@@ -143,20 +141,23 @@ body {
     font-family: 'Marvel', sans-serif;
     font-size: 1.6rem;
     text-align: center;
+    line-height: 2;
     margin: 2rem 5rem;
-    background: rgba( 255, 255, 255, 0.35 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background: #ffffff59;
+    box-shadow: 0 8px 32px 0 #1f26875e;
     backdrop-filter: blur( 3.5px );
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid #ffffff2e;
 }
 
 /* Style Cards */
 
 .loading {
+    display: block;
+    font-family: 'Marvel', sans-serif;
     text-align: center;
     font-size: 2rem;
-    color: snow;
+    color: black;
 }
 
 .catalogo {
@@ -172,7 +173,7 @@ body {
     font-family: 'Marvel', sans-serif;
     font-size: 1.6rem;
     background: linear-gradient(to right, #054c14f0, #fff, #bbdbad, #b9e0ba);
-    box-shadow: -5px 7px 7px 0px rgb(41 39 39);
+    box-shadow: -5px 7px 7px 0px #292727;
     backdrop-filter: blur(8px);
     border-radius: 2rem !important;
     border: inset 4px #06060657 !important;
@@ -199,18 +200,18 @@ body {
 .card__img {
     width: 75%;
     border-radius: 1rem;
-    border: ridge 2px rgba(247, 175, 42, 0.781);
+    border: ridge 2px #f7af2ac7;
 }
 
 .btn_agregar {
-    border: ridge 2px gainsboro;
+    border: ridge 2px #dcdcdc;
     border-radius: 2rem;
     margin: 1rem;
     font-size: 1.2rem;
 }
 
 .btn_agregar:hover {
-    box-shadow: -5px 5px 4px 2px rgb(29 30 31 / 70%), 0 4px 8px 3px rgb(60 64 67 / 16%);
+    box-shadow: -5px 5px 4px 2px #1d1e1fb3, 0 4px 8px 3px #3c404329;
     background-color: #76f376;
 }
 
@@ -296,11 +297,10 @@ body {
     gap: 1rem;
     color: snow;
     background: rgba( 255, 247, 247, 0.1 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 32px 0 #1f26875e;
     backdrop-filter: blur( 5.5px );
-    -webkit-backdrop-filter: blur( 5.5px );
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid #ffffff2e;
 }
 
 .footer p {

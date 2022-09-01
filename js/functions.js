@@ -34,15 +34,15 @@ function crearProducto() {
     agregarProdcuto.innerHTML = `<h3>Crear producto para venta</h3>
                                 <form>
                                     <label for="tipo" class="labels">Tipo</label>
-                                    <input type="text" id="tipo_input" class="inputs" placeholder="Pala, Bolso, Zapatilla, etc">
+                                    <input type="text" id="tipo_input" class="inputs" placeholder="Pala, Bolso, Zapatilla, etc.">
                                     <label for="marca" class="labels">Marca</label>
-                                    <input type="text" id="marca_input" class="inputs" placeholder="NOX, Bullpadel, Head, etc">
+                                    <input type="text" id="marca_input" class="inputs" placeholder="NOX, Bullpadel, Head, etc.">
                                     <label for="modelo" class="labels">Modelo</label>
-                                    <input type="text" id="modelo_input" class="inputs">
+                                    <input type="text" id="modelo_input" class="inputs" placeholder="Vertex, Viper, AT10, etc.">
                                     <label for="año" class="labels">Año</label>
-                                    <input type="text" id="anio_input" class="inputs">
+                                    <input type="text" id="anio_input" class="inputs" placeholder="Año de fabricación.">
                                     <label for="precio" class="labels">Precio</label>
-                                    <input type="text" id="precio_input" class="inputs">
+                                    <input type="text" id="precio_input" class="inputs" placeholder="En $ARS">
                                     <label for="img" class="labels">URL Imagen</label>
                                     <input type="url" id="img_input" class="inputs" placeholder="Ingresa la URL de la imágen a mostrar en el catálogo.">
                                 </form>
@@ -87,6 +87,8 @@ function agregarItem(item) {
             title: 'Excelente!',
             text: `Agregaste ${item.tipo} ${item.marca} ${item.modelo}`,
             icon: 'success',
+            color: `#fff`,
+            background: `#054c14f0`, 
             timer: 1500,
             timerProgressBar: true,
             showConfirmButton: false,
@@ -163,20 +165,20 @@ function finalizarCompra () {
     }).then((result) => {
         if(result.isConfirmed) {
             Swal.fire({
-                title: `Un paso más.`,
-                text: `Para finalizar ingrese un email para enviarte el formulario de pago.`,
-                input: 'email',
-                icon: `info`,
-                inputPlaceholder: 'Ingresá tu mail',
-                confirmButtonColor: `green`
-            }).then((email) => {
-                if (email) {
-                    Swal.fire({
-                        title: `Muchas gracias!`,
-                        text:`Sigue las instrucciones que han sido enviadas a tu mail.`,
-                        icon: `success`
-                    });
-                }
+                    title: `Un paso más.`,
+                    text: `Para finalizar ingrese un email para enviarte el formulario de pago. (No recibirás nada, pues es una web de preuba 😁)`,
+                    input: 'email',
+                    icon: `info`,
+                    inputPlaceholder: 'Ingresá tu mail',
+                    confirmButtonColor: `green`
+                }).then((email) => {
+                    if (email) {
+                        Swal.fire({
+                            title: `Muchas gracias!`,
+                            text:`Sigue las instrucciones que han sido enviadas a tu mail.`,
+                            icon: `success`
+                        });
+                    }
             })
             // carritoCompras queda vacío cuando la compra se concreta
             carritoCompras = [];

@@ -1,0 +1,24 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Ecommerce de productos de Padel",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchristello/javascriptChristello.git"
+  },
+  "author": "Matias Christello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mchristello/javascriptChristello/issues"
+  },
+  "homepage": "https://github.com/mchristello/javascriptChristello#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "sweetalert2": "^11.4.29",
+    "toastify-js": "^1.12.0"
+  }
+}
