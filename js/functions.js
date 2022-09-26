@@ -1,8 +1,8 @@
 // Declaración de FUNCIONES
-function mostrarCatalogo() {
+function mostrarCatalogo(array) {
     sectionCatalogo.innerHTML = "";
     nuevoProducto.innerHTML = ``;
-    paletero.forEach((item)=>{
+    array.forEach((item)=>{
         let nuevoItem = document.createElement(`div`);
         nuevoItem.innerHTML = `<article id="${item.id}" class="card">
                                     <h2 class="card__titulo">${item.marca}</h2>
@@ -149,15 +149,18 @@ function totalCompra(...totalProductos) {  // Spread para la funcion del importe
     acumulador = totalProductos.reduce((acc, item) => {
         return acc + item.precio
     }, 0);
-    acumulador>0 ? contenidoModal.innerHTML = `El total de su compra es $${acumulador}` : contenidoModal.innerHTML=`<p>No hay productos en el Carrito</p>`; // Acumulador con Operador Ternario.
+    acumulador > 0 ? contenidoModal.innerHTML = `El total de su compra es <b>$${acumulador}</b>` : contenidoModal.innerHTML=`<p>No hay productos en el Carrito</p>`; // Acumulador con Operador Ternario.
 }
 
 function finalizarCompra () {
+    setTimeout(() => {
+                
+    }, 2000);
     Swal.fire({
         title: `Ya casi!`,
         text: `Estas seguro de que qures finalizar esta compra?`,
         icon: `question`,
-        confirmButtonText: `Ok!`,
+        confirmButtonText: `<button data-bs-toggle="modal" data-bs-target="#idModal_pago" class="btn btn-secondary">Ok!</button>`,
         confirmButtonColor: `green`,
         showCancelButton: true,
         cancelButtonText: `Cancelar`,
@@ -165,21 +168,31 @@ function finalizarCompra () {
     }).then((result) => {
         if(result.isConfirmed) {
             Swal.fire({
-                    title: `Un paso más.`,
-                    text: `Para finalizar ingrese un email para enviarte el formulario de pago. (No recibirás nada, pues es una web de preuba 😁)`,
-                    input: 'email',
-                    icon: `info`,
-                    inputPlaceholder: 'Ingresá tu mail',
-                    confirmButtonColor: `green`
-                }).then((email) => {
-                    if (email) {
-                        Swal.fire({
-                            title: `Muchas gracias!`,
-                            text:`Sigue las instrucciones que han sido enviadas a tu mail.`,
-                            icon: `success`
-                        });
-                    }
+                title: `Aguarda un segundo más`,
+                text: `Te estamos dirigiendo a formulario de pago`,
+                icon: `info`,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
             })
+            setTimeout(() => {
+                
+            }, 2000);
+                    // title: `Un paso más.`,
+                    // text: `Para finalizar ingrese un email para enviarte el formulario de pago. (No recibirás nada, pues es una web de preuba 😁)`,
+                    // input: 'email',
+                    // icon: `info`,
+                    // inputPlaceholder: 'Ingresá tu mail',
+                    // confirmButtonColor: `green`
+            //     }).then((email) => {
+            //         if (email) {
+            //             Swal.fire({
+            //                 title: `Muchas gracias!`,
+            //                 text:`Sigue las instrucciones que han sido enviadas a tu mail.`,
+            //                 icon: `success`
+            //             });
+            //         }
+            // })
             // carritoCompras queda vacío cuando la compra se concreta
             carritoCompras = [];
             // Se borra el carrito de localStorage para que no guarde los items
@@ -196,4 +209,8 @@ function finalizarCompra () {
             })
         }
     })
+}
+
+function mercadoPago () {
+
 }

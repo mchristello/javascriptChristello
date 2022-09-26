@@ -13,7 +13,10 @@
     <!-- Link de Tostify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Link de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Script MercadoPago -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <link rel="shortcut icon" href="./img/padel.ico" type="image/x-icon">
     <title>Padel Market</title>
 </head>
@@ -22,10 +25,15 @@
     <div class="barra_botones">
         <nav class="nav-bar">
             <span class="fa-layers fa-layers-bottom-right">
-                <a id="boton_carrito" data-bs-toggle="modal" data-bs-target="#idModal" class="btn btn-secondary"><i class="fa fa-shopping-cart fa-2x"></i></a>
-                <span id="contador" class="fa-layers-counter contador"></span>
+                <a id="boton_carrito" data-bs-toggle="modal" data-bs-target="#idModal" class="btn btn-secondary"><i
+                class="fa fa-shopping-cart fa-2x"></i></a>
+                <span id="contador" class="fa-layers-counter contador">0</span>
             </span>
             <a href="" id="boton_sesion"><i class="fa-duotone fa-arrow-right-to-bracket"></i></a>
+            <div class="buscador">
+                <input type="text" id="buscador_input" class="buscador_input" placeholder="Ingrese la Marca🔍">
+                <button id="buscador_btn" class="buscador_btn">Go!</button>
+            </div>
         </nav>
     </div>
 
@@ -46,7 +54,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-success boton" id="pagar">Pagar</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-success boton"
+                            id="pagar">Pagar</button>
                     </div>
                 </div>
             </div>
@@ -55,16 +64,16 @@
         <!-- Cuerpo de la página -->
 
         <h1 class="titulo"> Bienvenid@ a tu tienda de PADEL. </h1>
-        
+
         <section id="botones_funciones" class="botones_funciones">
             <div id="mostrar_productos" class="boton btn">
                 <span>Mostrar Productos</span>
                 <div class="dot"></div>
-            </div>  
+            </div>
             <div id="ocultar_productos" class="boton btn">
                 <span>Ocultar</span>
                 <div class="dot"></div>
-            </div>  
+            </div>
             <div id="crear_producto" class="boton btn">
                 <span>Crear Producto</span>
                 <div class="dot"></div>
@@ -72,13 +81,21 @@
         </section>
 
         <article class="bienvenida">
-            <p>Tenemos la mejor selección de productos para vos. Ya sea que te estés iniciando en el Padel, o que seas <b>Fernando Belasteguín</b>.</p>
-            <p>También trabajamos a pedido. Si necesitas algo que no encontrás en nuestro catálogo, no dudes en ponerte en contacto con nosotros a través de cualquier medio, y vamos a darte varias opciones para que te hagas con el producto que queres.</p>
-            <p>Sin más para decir, te dejamos para que veas y elijas. Cualquier duda nos encontramos a disposición tuya.</p>
+            <p>Tenemos la mejor selección de productos para vos. Ya sea que te estés iniciando en el Padel, o que seas
+                <b>Fernando Belasteguín</b>.</p>
+            <p>También trabajamos a pedido. Si necesitas algo que no encontrás en nuestro catálogo, no dudes en ponerte
+                en contacto con nosotros a través de cualquier medio, y vamos a darte varias opciones para que te hagas
+                con el producto que queres.</p>
+            <p>Sin más para decir, te dejamos para que veas y elijas. Cualquier duda nos encontramos a disposición tuya.
+            </p>
         </article>
 
         <div id="loading" class="loading">
-
+            <div class="d-flex justify-content-center align-items-center">
+                <strong>Cargando el catalogo de productos...</strong>
+                <div class="spinner-border m-5 text-info" style="width: 3rem; height: 3rem;" role="status">
+                </div>
+            </div>
         </div>
 
         <section id="catalogo" class="catalogo">
@@ -89,21 +106,55 @@
 
         </section>
 
+        <section id="productos_buscados">
+            
+        </section>
+
+        <!-- Modal Pago -->
+        <section id="formulario_pago">
+            <div class="modal fade" id="idModal_pago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog .modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">Pago con tarjeta.</h3>
+                        </div>
+                        <div class="modal-body" id="modal-body">
+                            <section id="form_pago">
+                                <div class="brickMP" id="cardPaymentBrick_container">
+                                    
+                                </div>
+                            </section>                            
+                        </div>
+                        <div class="row ml-ato">
+                            <p id="precioTotal"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
     </main>
 
     <footer class="footer">
         <p>Copyright© 2022 || Diseñado y Desarrollado por <span class="destacado">Matias Christello</span>. || 😁🙌</p>
         <div class="footer__redes">
-            <a href="https://web.whatsapp.com/" target="_blank"><img src="./img/whatsapp(1).png" alt="Whatsapp icon"></a>
-            <a href="https://www.instagram.com/" target="_blank"><img src="./img/instagram(1).png" alt="Instagram icon"></a>
-            <a href="https://www.facebook.com/" target="_blank"><img src="./img/logo-de-facebook.png" alt="Facebook icon"></a>
+            <a href="https://web.whatsapp.com/" target="_blank"><img src="./img/whatsapp(1).png"
+                    alt="Whatsapp icon"></a>
+            <a href="https://www.instagram.com/" target="_blank"><img src="./img/instagram(1).png"
+                    alt="Instagram icon"></a>
+            <a href="https://www.facebook.com/" target="_blank"><img src="./img/logo-de-facebook.png"
+                    alt="Facebook icon"></a>
         </div>
     </footer>
 
-    <!-- Script de Clases -->
-    <script src="js/class.js"></script>
     <!-- Script de Functions -->
     <script src="js/functions.js"></script>
+    <!-- Script de API -->
+    <script src="./js/api.js"></script>
+    <!-- Script de Clases -->
+    <script src="js/class.js"></script>
     <!-- Script de Codigo -->
     <script src="./js/codigo.js"></script>
     <!-- Script SweetAlert2 -->
@@ -113,6 +164,7 @@
     <!-- Script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
+
 </body>
 
 </html>

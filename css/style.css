@@ -1,9 +1,12 @@
 /* Import */
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Marvel:wght@400;700&family=Roboto+Slab:wght@300;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap');
+
 /* font-family: 'Fredericka the Great', cursive;
 font-family: 'Marvel', sans-serif;
-font-family: 'Roboto Slab', serif; */
+font-family: 'Roboto Slab', serif; 
+font-family: 'Poppins', sans-serif; */
 
 /* Normalize */
 * {
@@ -16,9 +19,13 @@ body {
     font-family: 'Roboto Slab', serif;
     background: url(https://img.freepik.com/fotos-premium/bola-amarilla-piso-detras-red-paddle-cancha-azul-al-aire-libre-hombre-que-juega-al-padel-jugador-caucasico-deportista-golpeando-pelotas-concepto-juego-deporte-raqueta_352173-3719.jpg);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     background-attachment: fixed;
     color: snow;
+}
+
+.hidden {
+    display: none
 }
 
 /* Style */
@@ -32,6 +39,46 @@ body {
 .nav-bar {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+.barra_botones {
+    position: sticky;
+    top: 1rem;
+    z-index: 1;
+}
+
+#boton_carrito {
+    --bs-btn-color: #131313 !important;
+    background-color: #85f75c !important;
+    margin-left: 2rem;
+    border: 3px outset #e0e0e0;
+}
+
+#contador {
+    background: tomato;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    border: 3px outset #e0e0e0;
+}
+
+.buscador {
+    margin: 1rem 2rem;
+}
+
+.buscador_input {
+    font-family: 'Marvel', sans-serif;
+    width: 25vw;
+    border-radius: 1rem;
+    padding: .6rem;
+}
+
+.buscador_btn {
+    background: #4df53e;
+    font-weight: bold;
+    width: 5vw;
+    border-radius: 1rem;
+    padding: .6rem;
 }
 
 .titulo {
@@ -42,6 +89,20 @@ body {
     font-family: 'Fredericka the Great', cursive;
     font-weight: bold;
     color: #292828;
+}
+
+.botones_funciones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    margin: 5rem auto;
+    background: #91c4ec33;
+    box-shadow: 0 8px 32px 0 #1f26875e;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid #ffffff2e;
 }
 
 .boton {
@@ -83,7 +144,7 @@ body {
     border-radius: 1em;
     border: 1px rgb(251, 252, 248);
     box-shadow: 0 0 .7em #d2e950,
-                0 0 2em #cfff4a;
+        0 0 2em #cfff4a;
 }
 
 .btn:hover .dot,
@@ -93,48 +154,25 @@ body {
 }
 
 @keyframes atom {
-    0% {transform: translateX(0) rotate(0);}
-    30%{transform: translateX(8rem) rotate(0);}
-    50% {transform: translateX(8rem) rotate(180deg);}
-    80% {transform: translateX(0) rotate(180deg);}
-    100% {transform: translateX(0) rotate(360deg);}
-}
+    0% {
+        transform: translateX(0) rotate(0);
+    }
 
+    30% {
+        transform: translateX(8rem) rotate(0);
+    }
 
+    50% {
+        transform: translateX(8rem) rotate(180deg);
+    }
 
-.barra_botones {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: sticky;
-    top: 1rem;
-    z-index: 1;
-}
+    80% {
+        transform: translateX(0) rotate(180deg);
+    }
 
-.botones_funciones {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5rem;
-    margin: 5rem auto;
-    background: #91c4ec33;
-    box-shadow: 0 8px 32px 0 #1f26875e;
-    backdrop-filter: blur( 10px );
-    border-radius: 10px;
-    border: 1px solid #ffffff2e;
-}
-
-#boton_carrito {
-    --bs-btn-color: #131313 !important;
-    background-color: #85f75c !important;
-    margin-left: 2rem;
-}
-
-#contador {
-    background: tomato;
-    font-size: 1.8rem;
-    border-radius: 1rem;
+    100% {
+        transform: translateX(0) rotate(360deg);
+    }
 }
 
 .bienvenida {
@@ -145,7 +183,7 @@ body {
     margin: 2rem 5rem;
     background: #ffffff59;
     box-shadow: 0 8px 32px 0 #1f26875e;
-    backdrop-filter: blur( 3.5px );
+    backdrop-filter: blur(3.5px);
     border-radius: 10px;
     border: 1px solid #ffffff2e;
 }
@@ -198,16 +236,19 @@ body {
 }
 
 .card__img {
-    width: 75%;
+    width: 90%;
     border-radius: 1rem;
     border: ridge 2px #f7af2ac7;
 }
 
 .btn_agregar {
-    border: ridge 2px #dcdcdc;
+    font-family: 'Poppins', sans-serif;
+    border: outset 2px #dcdcdc;
     border-radius: 2rem;
     margin: 1rem;
     font-size: 1.2rem;
+    padding: 0 1rem;
+    background: #a6ffea;
 }
 
 .btn_agregar:hover {
@@ -285,6 +326,32 @@ body {
     margin: 2rem;
 }
 
+/* MP */
+#form-checkout {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+.container {
+    height: 2rem;
+    display: inline-block;
+    border: 1px solid #767676;
+    border-radius: 10px;
+    padding: 1px 2px;
+    background: snow;;
+}
+
+/* Style MercadoPago */
+
+.brickMP {
+    border: 2px outset lightblue;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 5rem auto;
+    width: 45vw;
+}
+
 /* Style Footer */
 
 .footer {
@@ -296,22 +363,22 @@ body {
     align-items: center;
     gap: 1rem;
     color: snow;
-    background: rgba( 255, 247, 247, 0.1 );
+    background: rgba(255, 247, 247, 0.1);
     box-shadow: 0 8px 32px 0 #1f26875e;
-    backdrop-filter: blur( 5.5px );
+    backdrop-filter: blur(5.5px);
     border-radius: 10px;
     border: 1px solid #ffffff2e;
 }
 
 .footer p {
     text-align: center;
-    width: 80%; 
+    width: 80%;
 }
 
 .footer .destacado {
     color: #f79400;
     font-style: italic;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .footer__redes {
@@ -321,11 +388,11 @@ body {
     align-items: center;
     gap: 2rem;
     width: 40%;
-    margin-right: 5rem; 
+    margin-right: 5rem;
 }
 
 .footer__redes img {
-    width: 3rem; 
+    width: 3rem;
 }
 
 
