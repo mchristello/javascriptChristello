@@ -25,11 +25,11 @@ const renderCardPaymentBrick = async (bricksBuilder) => {
                             },
                             body: JSON.stringifsy(cardFormData)
                         })
-                        .then((response) => {
+                        .then((resolve) => {
                             // recibir el resultado del pago
                             resolve();
                         })
-                        .catch((error) => {
+                        .catch((reject) => {
                             // tratar respuesta de error al intentar crear el pago
                             reject();
                         })

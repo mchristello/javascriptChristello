@@ -16,7 +16,7 @@ font-family: 'Poppins', sans-serif; */
 }
 
 body {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Poppins', sans-serif;
     background: url(https://img.freepik.com/fotos-premium/bola-amarilla-piso-detras-red-paddle-cancha-azul-al-aire-libre-hombre-que-juega-al-padel-jugador-caucasico-deportista-golpeando-pelotas-concepto-juego-deporte-raqueta_352173-3719.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -49,17 +49,14 @@ body {
 }
 
 #boton_carrito {
-    --bs-btn-color: #131313 !important;
-    background-color: #85f75c !important;
     margin-left: 2rem;
-    border: 3px outset #e0e0e0;
 }
 
 #contador {
     background: tomato;
     font-size: 1.8rem;
     border-radius: 1rem;
-    border: 3px outset #e0e0e0;
+    border: 1px inset #e0e0e0;
 }
 
 .buscador {
@@ -74,7 +71,6 @@ body {
 }
 
 .buscador_btn {
-    background: #4df53e;
     font-weight: bold;
     width: 5vw;
     border-radius: 1rem;
@@ -86,8 +82,7 @@ body {
     font-size: 4rem;
     margin: 5rem auto;
     text-decoration: underline;
-    font-family: 'Fredericka the Great', cursive;
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
     color: #292828;
 }
 
@@ -200,21 +195,19 @@ body {
 
 .catalogo {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
     justify-content: center;
-    margin: 0 6rem;
+    margin: 0 5rem;
 }
 
 .card {
     align-items: center;
     font-family: 'Marvel', sans-serif;
-    font-size: 1.6rem;
-    background: linear-gradient(to right, #054c14f0, #fff, #bbdbad, #b9e0ba);
-    box-shadow: -5px 7px 7px 0px #292727;
-    backdrop-filter: blur(8px);
-    border-radius: 2rem !important;
-    border: inset 4px #06060657 !important;
+    font-size: 1.4rem;
+    background: linear-gradient(to right, snow, #dad8d8);   
+    border-radius: 100px 50px 100px 50px!important;
+    border: inset 2px #06060657 !important;
 }
 
 .card__titulo {
@@ -225,6 +218,7 @@ body {
 
 .card__precio {
     font-weight: bold;
+    font-size: 1.6rem;
     color: green;
 }
 
@@ -236,24 +230,24 @@ body {
 }
 
 .card__img {
-    width: 90%;
-    border-radius: 1rem;
-    border: ridge 2px #f7af2ac7;
+    width: 100%;
+    border-radius: 100px 50px 100px 50px;
 }
 
 .btn_agregar {
     font-family: 'Poppins', sans-serif;
-    border: outset 2px #dcdcdc;
+    border: outset 2px #64cafa;
     border-radius: 2rem;
     margin: 1rem;
+    width: 100%;
     font-size: 1.2rem;
     padding: 0 1rem;
-    background: #a6ffea;
+    background: #ffffff;
 }
 
 .btn_agregar:hover {
     box-shadow: -5px 5px 4px 2px #1d1e1fb3, 0 4px 8px 3px #3c404329;
-    background-color: #76f376;
+    background-color: #b9e5f7;
 }
 
 /* Style Formulario Nuevo Producto */

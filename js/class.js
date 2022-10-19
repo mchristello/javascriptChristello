@@ -1,13 +1,14 @@
 // Declaración de Clase
 class Items {
-    constructor(id, tipo, imagen, marca, modelo, anio, precio) {
-        this.id = id
-        this.tipo = tipo
-        this.imagen = imagen
-        this.marca = marca
-        this.modelo = modelo
-        this.anio = anio
-        this.precio = precio
+    constructor(id, tipo, imagen, marca, modelo, anio, precio, stock) {
+        this.id = id;
+        this.tipo = tipo;
+        this.imagen = imagen;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+        this.precio = precio;
+        this.stock = stock;
     };
 }
 

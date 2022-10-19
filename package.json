@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mchristello/javascriptChristello#readme",
   "dependencies": {
     "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
     "mercadopago": "^1.5.14",
     "sweetalert2": "^11.4.29",
     "toastify-js": "^1.12.0"

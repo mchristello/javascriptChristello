@@ -5,16 +5,19 @@ function mostrarCatalogo(array) {
     array.forEach((item)=>{
         let nuevoItem = document.createElement(`div`);
         nuevoItem.innerHTML = `<article id="${item.id}" class="card">
-                                    <h2 class="card__titulo">${item.marca}</h2>
                                     <img class="card__img" src="${item.imagen}" alt="${item.marca} ${item.modelo}">
+                                    <h2 class="card__titulo">${item.marca}</h2>
                                     <div class="card__contenido">
-                                        <p class="card__texto">${item.tipo} ${item.marca} ${item.modelo}</p>
+                                        <p class="card__texto"> ${item.modelo}</p>
                                         <p class="card__año">Año ${item.anio}</p>
                                         <p class="card__precio">$${item.precio}</p>
-                                        <button class="btn_agregar" id="boton_agregar${item.id}"> Agregar al Carrito </button>
+                                        <button class="btn_agregar btn btn-success" id="boton_agregar${item.id}"> Agregar<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
+                                        <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg></button>
                                     </div>
                                 </article>`
         sectionCatalogo.appendChild(nuevoItem);
+
         // Evento para agregar los productos al carrito.
         let btnAgregar = document.getElementById(`boton_agregar${item.id}`);
         btnAgregar.addEventListener("click", () => {agregarItem(item)});
@@ -45,6 +48,8 @@ function crearProducto() {
                                     <input type="text" id="precio_input" class="inputs" placeholder="En $ARS">
                                     <label for="img" class="labels">URL Imagen</label>
                                     <input type="url" id="img_input" class="inputs" placeholder="Ingresa la URL de la imágen a mostrar en el catálogo.">
+                                    <label for="stock" class="labels">Stock Disponible</label>
+                                    <input type="number" id="stock_input" class="inputs" placeholder="Ingrese el Stock Disponible"</input>
                                 </form>
                                 <button id="boton_guardar" class="boton btn_agregar"> Guardar</button>`;
     nuevoProducto.appendChild(agregarProdcuto);
@@ -59,7 +64,8 @@ function guardarNuevo() {
     let modeloInput = document.getElementById(`modelo_input`).value;
     let anioInput = document.getElementById(`anio_input`).value;
     let precioInput = document.getElementById(`precio_input`).value;
-    itemCreado = new Items(parseInt(paletero.length+1), tipoInput, imgInput, marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput));
+    let stockInput = document.getElementById(`stock_input`).value;
+    itemCreado = new Items(parseInt(paletero.length+1), tipoInput, imgInput, marcaInput, modeloInput, parseInt(anioInput), parseInt(precioInput), parseInt(stockInput));
     Toastify({
         text: `Agregaste ${tipoInput} ${marcaInput}`,
         duration: 2000,
@@ -115,7 +121,9 @@ function mostrarProductosCarrito(productosDelStorage) {
                                         <p class="card__texto--marca">${item.marca} ${item.modelo}</p>
                                         <p class="card__texto--año">${item.anio}</p>
                                         <p class="card__precio">$${item.precio}</p>
-                                        <button class="btn_agregar boton" id="eliminar${item.id}">Eliminar del Carrito</button>
+                                        <button type="button" class="btn btn-danger" id="eliminar${item.id}"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                        </svg></button>
                                     </div>
                                 </article>`;
     })
@@ -141,7 +149,7 @@ function mostrarProductosCarrito(productosDelStorage) {
 }
 
 function itemsEnCarrito(cantItems) {
-    (cantItems === 0) ? contadorItems.innerText = `0`: contadorItems.innerText = `${cantItems.length}`;
+    (cantItems === 0) ? contadorItems.innerText = ``: contadorItems.innerText = `${cantItems.length}`;
 }
 
 function totalCompra(...totalProductos) {  // Spread para la funcion del importe total del carrito.
@@ -153,62 +161,69 @@ function totalCompra(...totalProductos) {  // Spread para la funcion del importe
 }
 
 function finalizarCompra () {
-    setTimeout(() => {
-                
-    }, 2000);
-    Swal.fire({
-        title: `Ya casi!`,
-        text: `Estas seguro de que qures finalizar esta compra?`,
-        icon: `question`,
-        confirmButtonText: `<button data-bs-toggle="modal" data-bs-target="#idModal_pago" class="btn btn-secondary">Ok!</button>`,
-        confirmButtonColor: `green`,
-        showCancelButton: true,
-        cancelButtonText: `Cancelar`,
-        cancelButtonColor: `red`
-    }).then((result) => {
-        if(result.isConfirmed) {
-            Swal.fire({
-                title: `Aguarda un segundo más`,
-                text: `Te estamos dirigiendo a formulario de pago`,
-                icon: `info`,
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true
-            })
-            setTimeout(() => {
-                
-            }, 2000);
-                    // title: `Un paso más.`,
-                    // text: `Para finalizar ingrese un email para enviarte el formulario de pago. (No recibirás nada, pues es una web de preuba 😁)`,
-                    // input: 'email',
-                    // icon: `info`,
-                    // inputPlaceholder: 'Ingresá tu mail',
-                    // confirmButtonColor: `green`
-            //     }).then((email) => {
-            //         if (email) {
-            //             Swal.fire({
-            //                 title: `Muchas gracias!`,
-            //                 text:`Sigue las instrucciones que han sido enviadas a tu mail.`,
-            //                 icon: `success`
-            //             });
-            //         }
-            // })
-            // carritoCompras queda vacío cuando la compra se concreta
-            carritoCompras = [];
-            // Se borra el carrito de localStorage para que no guarde los items
-            localStorage.removeItem(`carrito`);
-            //Volvemos a cargar el modal con el array vacío por lo que quedará sin nada
-            mostrarProductosCarrito(carritoCompras);
-        } else {
-            Swal.fire({
-                title: `Cancelado`,
-                text: `La compra no fue realizada. Los productos siguen en tu carrito!!`,
-                icon: `warning`,
-                confirmButtonText: `Ok`,
-                confirmButtonColor: `green`
-            })
-        }
-    })
+    if (carritoCompras.length > 0) {
+        Swal.fire({
+            title: `Ya casi!`,
+            text: `Estas seguro de que qures finalizar esta compra?`,
+            icon: `question`,
+            confirmButtonText: `<button data-bs-toggle="modal" data-bs-target="#idModal_pago" class="btn btn-secondary">Ok!</button>`,
+            confirmButtonColor: `green`,
+            showCancelButton: true,
+            cancelButtonText: `Cancelar`,
+            cancelButtonColor: `red`
+        }).then((result) => {
+            if(result.isConfirmed) {
+                Swal.fire({
+                    title: `Aguarda un segundo más`,
+                    text: `Te estamos dirigiendo a formulario de pago`,
+                    icon: `info`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                })
+                setTimeout(() => {
+                    
+                }, 2000);
+                        // title: `Un paso más.`,
+                        // text: `Para finalizar ingrese un email para enviarte el formulario de pago. (No recibirás nada, pues es una web de preuba 😁)`,
+                        // input: 'email',
+                        // icon: `info`,
+                        // inputPlaceholder: 'Ingresá tu mail',
+                        // confirmButtonColor: `green`
+                //     }).then((email) => {
+                //         if (email) {
+                //             Swal.fire({
+                //                 title: `Muchas gracias!`,
+                //                 text:`Sigue las instrucciones que han sido enviadas a tu mail.`,
+                //                 icon: `success`
+                //             });
+                //         }
+                // })
+                // carritoCompras queda vacío cuando la compra se concreta
+                carritoCompras = [];
+                // Se borra el carrito de localStorage para que no guarde los items
+                localStorage.removeItem(`carrito`);
+                //Volvemos a cargar el modal con el array vacío por lo que quedará sin nada
+                mostrarProductosCarrito(carritoCompras);
+            } else {
+                Swal.fire({
+                    title: `Cancelado`,
+                    text: `La compra no fue realizada. Los productos siguen en tu carrito!!`,
+                    icon: `warning`,
+                    confirmButtonText: `Ok`,
+                    confirmButtonColor: `green`
+                })
+            }
+        })
+    } else {
+        Swal.fire({
+            title: `Ups!`,
+            text: `Tu carrito está vacío.`,
+            icon: `info`,
+            confirmButtonText: `Ok`,
+            confirmButtonColor: `green`
+        })
+    }
 }
 
 function mercadoPago () {
